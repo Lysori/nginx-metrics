@@ -22,3 +22,12 @@ services:
           - "9050:9090"
         networks:
           - lysori-net
+          
+  grafana:
+        image: grafana/grafana:latest
+        volumes:
+          - ./:/var/lib/grafana
+        ports:
+          - "3000:3000"
+        networks:
+          - lysori-net
