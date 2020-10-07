@@ -1,0 +1,24 @@
+version: '3.8'
+networks:
+    lysori-net:
+      driver: bridge
+      name: lysori-net
+
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./:/usr/share/nginx/html/
+    ports:
+      - "8090:80"
+    networks:
+      - lysori-net  
+      
+  prometheus:
+        image: prom/prometheus:latest
+        volumes:
+          - ./tmp:/etc/prometheus/
+        ports:
+          - "9050:9090"
+        networks:
+          - lysori-net
